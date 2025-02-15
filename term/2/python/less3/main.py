@@ -1,5 +1,7 @@
 import os
 
+import test
+
 def cls():
   os.system('cls' if os.name == 'nt' else 'clear')
 # end def
@@ -92,7 +94,102 @@ match choosen:
     
 #task №2
   case "2":
-    pass
+    tests = [
+      {
+        "question": "Назовите первый этап эволюции человека:",
+        "answers": ['дриопитек'],
+        "userAnswer": ""
+      },
+      {
+        "question": "Назовите второй этап эволюции человека:",
+        "answers": ['стадия протантропа', 'протантроп', 'австралопитек'],
+        "userAnswer": ""
+      },
+      {
+        "question": "Назовите третий этап эволюции человека:",
+        "answers": ['человек умелый', 'умелый'],
+        "userAnswer": ""
+      },
+      {
+        "question": "Назовите четвертый этап эволюции человека:",
+        "answers": ['стадия архантропа', 'архантроп', 'стадия питекантропа', 'питекантроп', 'человек прямоходящий', 'прямоходящий'],
+        "userAnswer": ""
+      },
+      {
+        "question": "Назовите пятый этап эволюции человека:",
+        "answers": ['стадия палеоантропа', 'палеоантроп', 'стадия неандертальца', 'неандерталец'],
+        "userAnswer": ""
+      },
+      {
+        "question": "Назовите шестой этап эволюции человека:",
+        "answers": ['стадия неоантропа', 'неоантроп', 'кроманьонец', 'стадия человека разумного', 'человек разумный', 'разумный'],
+        "userAnswer": ""
+      }
+    ]
+    
+    def isAnswerCorrect(answersList, userAnswer):
+      if not len(userAnswer): return False
+      
+      percentToCorrect = 70
+      letterToPercent = 100 / len(userAnswer)
+      maxPercentOfCorrect = 0
+      
+      for answer in answersList:
+        answerLen = len(answer)
+        correctLettersPercent = 0
+        
+        for i in range(0, len(userAnswer)):
+          UAC = userAnswer[i]
+          AC = answer[i] if i < answerLen else None
+          
+          if UAC == AC: correctLettersPercent += letterToPercent
+        # end for
+        
+        if correctLettersPercent > maxPercentOfCorrect:
+          maxPercentOfCorrect = correctLettersPercent
+      # end for
+
+      return maxPercentOfCorrect >= percentToCorrect
+    # end def
+    
+    def startTest(tests):
+      for test in tests:
+        verdict = ""
+        
+        cls()
+        print(test['question'])
+        test['userAnswer'] = input()
+        
+        if not isAnswerCorrect(test['answers'], test['userAnswer']):
+          verdict = "неверно"
+        else:
+          verdict = "верно"
+          
+        test['userAnswer'] = f"\"{test['userAnswer']}\" ({verdict})"
+      # end for
+      
+      result(tests)
+    # end def
+    
+    def result(tests):
+      testLen = len(tests)
+      concStr = " => "
+      alternatePrint = []
+      
+      cls()
+      print("Ваши варианты ответов:")
+      
+      for i in range(0, testLen):
+        endStr = concStr if i + 1 < testLen else ""
+        str = f"{i + 1}. {tests[i]['userAnswer']}"
+        alternatePrint.append(str)
+        print(str, end=endStr)
+        
+      print("\n-----------------------------------------")
+      print(*alternatePrint, sep=concStr)
+    # end def
+    
+    startTest(tests)
 
   case _:
     _print("Получено некорректное значение. Запустите программу повторно и введите цифру от 1 до 2.")
