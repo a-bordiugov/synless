@@ -1,5 +1,7 @@
 import os
 
+import test
+
 def cls():
   os.system('cls' if os.name == 'nt' else 'clear')
 # end def
@@ -20,17 +22,14 @@ match choosen:
     
     inputRequest = {
       "age": {
-          "name": "Возраст",
           "text": "Введите возраст вашего питомца",
           "expectedValType": "int"
         },
       "name": {
-        "name": "Имя",
         "text": "Введите имя вашего питомца",
         "expectedValType": "str"
       },
       "petType": {
-        "name": "Тип питомца",
         "text": "Введите тип вашего питомца",
         "expectedValType": "str"
       }
@@ -53,14 +52,13 @@ match choosen:
       return "лет"
     # end def
     
-    def checkData(data, inputRequest, isFirstInit):
+    def checkData(data, isFirstInit):
       isFilled = True
 
       for k, v in data.items():
         if not v:
           isFilled = False
-          print(f"Поле \"{inputRequest[k]['name']}\" заполнено некорректно. Попробуйте еще раз.")
-      # end for
+          print(f"Поле \"{k}\" заполнено некорректно. Попробуйте еще раз.")
 
       if not isFirstInit and not isFilled: os.system('pause')
       
@@ -84,7 +82,7 @@ match choosen:
     def handler(petInfo, inputRequest):
       global isFirstInit
       
-      if not checkData(petInfo, inputRequest, isFirstInit):
+      if not checkData(petInfo, isFirstInit):
         isFirstInit = False
         filler(petInfo, inputRequest)
         handler(petInfo, inputRequest)
