@@ -1,4 +1,5 @@
 import os
+from math import ceil
 
 def cls():
   os.system('cls' if os.name == 'nt' else 'clear')
@@ -133,7 +134,7 @@ match choosen:
       if not len(userAnswer): return False
       
       percentToCorrect = 70
-      letterToPercent = 100 / len(userAnswer)
+      letterToPercent = ceil(100 / len(userAnswer))
       maxPercentOfCorrect = 0
       
       for answer in answersList:
