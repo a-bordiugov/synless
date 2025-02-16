@@ -129,7 +129,10 @@ match choosen:
             result = int(userInput[3]) ** int(userInput[4]) * int(userInput[2]) / (int(userInput[0]) - int(userInput[1]))
         except ZeroDivisionError:
           pass
-        
+        except Exception:
+          _print("Возникла непредвиденная ошибка. Программа завершила свою работу.")
+          exit()
+
         _print(f"Результат: {result}")
       else:
         _print("Требуется пятизначное число. Попробуйте снова.")
