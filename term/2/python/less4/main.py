@@ -97,8 +97,50 @@ match choosen:
     _print("Характеристика прямоугольника:")
     print(f"Площадь: {areaAsStr} см")
     print(f"Периметр: {perimeterAsStr} см")
+    
   case "2":
-    pass
+    lenRequirement = 5
+    
+    def inputValidator(value):
+      try:
+        isDigit = isinstance(complex(value), complex)
+        isNegative = value[0] == '-'
+        isLenCorrect = isNegative and len(value) - 1 == lenRequirement or len(value) == lenRequirement
+        
+        if isDigit and isLenCorrect:
+          return True
+      except Exception:          
+        return False
+    # end def
+    
+    def handler(text):
+      _print(text)
+      
+      userInput = input().strip()
+      
+      if inputValidator(userInput):
+        result = 0
+        isNegative = userInput[0] == '-'
+        
+        try:
+          if isNegative:
+            result = -int(userInput[4]) ** int(userInput[5]) * int(userInput[3]) / (int(userInput[1]) - int(userInput[2]))
+          else:
+            result = int(userInput[3]) ** int(userInput[4]) * int(userInput[2]) / (int(userInput[0]) - int(userInput[1]))
+        except ZeroDivisionError:
+          pass
+        
+        _print(f"Результат: {result}")
+      else:
+        _print("Требуется пятизначное число. Попробуйте снова.")
+      
+        os.system('pause')
+        
+        handler(text)
+    # end def
+    
+    handler("Введите пятизначное целое число:")
+
   case _:
     _print("Получено некорректное значение. Запустите программу повторно и введите цифру от 1 до 2.")
 # end match
