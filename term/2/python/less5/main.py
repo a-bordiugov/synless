@@ -35,10 +35,7 @@ match choosen:
       value = value.strip()
       
       try:
-        value = int(value)
-        
-        if isinstance(value, int):
-          return value
+        return int(value)
       except Exception:
         _print("Не удалось распознать целое число. Попробуйте снова.")
         
@@ -132,9 +129,9 @@ match choosen:
     # end def
     
     def inputValidator(value):
+      errMsg = "Введены некорректные данные. Попробуйте снова."
+      
       try:
-        errMsg = "Введены некорректные данные. Попробуйте снова."
-        
         if isinstance(complex(value), complex):
           value = int(value)
           
@@ -183,10 +180,10 @@ match choosen:
         
         # Добавляем информацию о минимальной инвестиции
         # Добавляем информацию об инвесторах
-        if isinstance(cb, str):
-          globals()[cb](userInput)
+        if callable(cb):
+          cb(userInput)
         elif isinstance(cb, list):
-          globals()[ cb[0] ]( cb[1], userInput )
+          cb[0](cb[1], userInput)
         else:
           _print("Непредвиденная ошибка. Работа программы была завершена.")
       
@@ -197,9 +194,9 @@ match choosen:
         return handler(text, cb)
     # end def
 
-    handler(f"Вы фаундер стартапа \"{company['name']}\", объявите минимальную сумму($) для инверстирования:", 'setMinInvest')
-    handler(f"Вы инвестор Майкл и хотите инвестировать в стартап \"{company['name']}\". Какую сумму($) вы хотите инвестировать?", ['setInvestor', 'Mike'])
-    handler(f"Вы инвестор Иван и хотите инвестировать в стартап \"{company['name']}\". Какую сумму($) вы хотите инвестировать?", ['setInvestor', 'Ivan'])
+    handler(f"Вы фаундер стартапа \"{company['name']}\", объявите минимальную сумму($) для инверстирования:", setMinInvest)
+    handler(f"Вы инвестор Майкл и хотите инвестировать в стартап \"{company['name']}\". Какую сумму($) вы хотите инвестировать?", [setInvestor, 'Mike'])
+    handler(f"Вы инвестор Иван и хотите инвестировать в стартап \"{company['name']}\". Какую сумму($) вы хотите инвестировать?", [setInvestor, 'Ivan'])
     result()
   
   case _:
