@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заметки</title>
+  <link rel="stylesheet" href="./src/css/normalize.min.css">
+  <link rel="stylesheet" href="./src/css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Заметки</h1>
+    <h2>Создавайте и управляйте заметками</h2>
+  </header>
+
+  <main class="notes-dock">
+    <div class="bulk-operations">
+      <div class="name">Выбранные заметки:</div>
+      <ul>
+        <li><a href="#" id="delete-selected">Удалить</a></li>
+      </ul>
+    </div>
+
+    <div class="notes"></div>
+  </main>
+
+  <script src="./src/js/NotesManager.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      notesManager = new NotesManager();
+    });
+  </script>
+</body>
+</html>
