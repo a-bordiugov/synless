@@ -1,0 +1,30 @@
+{
+    "python.analysis.fixAll": [
+        "source.unusedImports"
+    ],
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.enableTroubleshootMissingImports": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.pytestParameters": true,
+    "editor.indentSize": "tabSize",
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.analysis.languageServerMode": "full",
+    "pylint.args": [
+        "--max-line-length=120"
+    ],
+    "files.eol": "\n",
+    "isort.interpreter": [
+        "${workspaceFolder}/.venv/Scripts/python.exe"
+    ],
+    "pylint.interpreter": [
+        "${workspaceFolder}/.venv/Scripts/python.exe"
+    ],
+    "isort.importStrategy": "fromEnvironment",
+    "pylint.importStrategy": "fromEnvironment",
+}
